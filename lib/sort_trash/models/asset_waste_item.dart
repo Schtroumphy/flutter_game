@@ -10,7 +10,10 @@ enum AssetWasteItem {
 
   can(TrashType.plastic, "assets/items/can.svg"),
   plasticCoffee(TrashType.plastic, "assets/items/plastic_coffee.svg"),
-  bottle(TrashType.plastic, "assets/items/bottle.svg");
+  bottle(TrashType.plastic, "assets/items/bottle.svg"),
+
+  metal1(TrashType.metal, "assets/items/bottle.svg"),
+  metal2(TrashType.metal, "assets/items/bottle.svg");
 
   const AssetWasteItem(this.type, this.path);
 

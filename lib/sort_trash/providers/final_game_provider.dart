@@ -1,22 +1,15 @@
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final endedGameProvider = NotifierProvider<GameEndedNotifier, GameType?>(() => GameEndedNotifier());
+final endedGameProvider = Provider<GameEnded>((ref) => GameEnded(ref));
 
-class GameEndedNotifier extends Notifier<GameType?> {
+class GameEnded {
+  GameEnded(this.ref);
 
-  @override
-  GameType? build() {
-    return null;
-  }
+  final Ref ref;
 
   void changeEndedGame(GameType type) {
-    state = type;
+    //state = type;
   }
 }
 
-enum GameType {
-  none,
-  sortTrash,
-  ticTacToe
-}
+enum GameType { none, sortTrash, ticTacToe }
