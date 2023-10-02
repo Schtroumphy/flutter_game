@@ -6,7 +6,7 @@ import 'package:flutter_game/sort_trash/models/trash_item.dart';
 import 'package:flutter_game/sort_trash/models/trash_item_type.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final sortTrashGameNotifierProvider = NotifierProvider<TrashItemNotifier, List<TrashItem>>(() => TrashItemNotifier());
+final sortTrashGameNotifierProvider = NotifierProvider<TrashItemNotifier, SortTrashGame>(() => TrashItemNotifier());
 
 class SortTrashGame {
   final List<TrashItem> items;
@@ -22,24 +22,31 @@ class SortTrashGame {
   }
 }
 
-class TrashItemNotifier extends Notifier<List<TrashItem>> {
+class TrashItemNotifier extends Notifier<SortTrashGame> {
   Random random = Random();
 
+  final typeTrashInGame = 3;
+
   @override
-  List<TrashItem> build() {
-    return List.generate(3, (index) => _createRandomTrashItem(3));
+  SortTrashGame build() {
+    return SortTrashGame(
+      items: List.generate(3, (index) => _createRandomTrashItem(typeTrashInGame)),
+      isButtonsEnabled: true,
+    );
   }
 
   start() => ref.read(gameNotifierProvider.notifier).start(GameType.sortTheTrash);
 
   end() => ref.read(gameNotifierProvider.notifier).end();
 
-  enableTrashButtons(bool isEnable) {
-
+  disableTrashButtons() async {
+    state = state.copyWith(isEnabled: false);
+    await Future.delayed(const Duration(seconds: 2));
+    state = state.copyWith(isEnabled: true);
   }
 
   bool throwItem(List<TrashType> buttonTypes) {
-    if (buttonTypes.contains(state.last.type)) {
+    if (buttonTypes.contains(state.items.last.type)) {
       removeLastItem();
       ref.read(gameNotifierProvider.notifier).addScore();
       return true;
@@ -49,10 +56,10 @@ class TrashItemNotifier extends Notifier<List<TrashItem>> {
   }
 
   void removeLastItem() {
-    final newState = [...state];
-    newState.removeLast();
-    newState.insert(0, _createRandomTrashItem(2));
-    state = newState;
+    final items = [...state.items];
+    items.removeLast();
+    items.insert(0, _createRandomTrashItem(typeTrashInGame));
+    state = state.copyWith(items: items);
   }
 
   TrashItem _createRandomTrashItem(int typeNumber) {

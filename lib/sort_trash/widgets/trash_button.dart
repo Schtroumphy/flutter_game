@@ -26,12 +26,13 @@ class TrashButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final buttonsEnabled = ref.watch(sortTrashGameNotifierProvider).isButtonsEnabled;
     return SizedBox(
       width: 200,
       height: 150,
       child: GestureDetector(
         onTap: () {
-          _onTrashTapped(ref, buttonTypes);
+          buttonsEnabled ? _onTrashTapped(ref, buttonTypes) : null;
         },
         child: Container(
           padding: const EdgeInsets.only(top: Insets.m),
@@ -41,7 +42,7 @@ class TrashButton extends ConsumerWidget {
               Positioned(
                 right: null,
                 child: TrashIcon(
-                  trashColor: buttonTypes[0].color,
+                  trashColor: buttonsEnabled ? buttonTypes[0].color : Colors.grey,
                 ),
               ),
               Positioned(
@@ -49,7 +50,7 @@ class TrashButton extends ConsumerWidget {
                 left: isInversed ? null : 25,
                 right: isInversed ? 25 : null,
                 child: TrashIcon(
-                  trashColor: buttonTypes[1].color,
+                  trashColor: buttonsEnabled ? buttonTypes[1].color : Colors.grey,
                 ),
               ),
             ],
@@ -87,7 +88,6 @@ class TrashIcon extends StatelessWidget {
     return SvgPicture.asset(
       AssetConstants.trashIcon,
       color: trashColor,
-      //colorFilter: ColorFilter.mode(trashColor, BlendMode.),
       width: 100,
       height: 100,
     );

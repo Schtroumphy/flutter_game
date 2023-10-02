@@ -31,7 +31,7 @@ class _SortTrashScreenState extends ConsumerState<SortTrashGameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final items = ref.watch(sortTrashGameNotifierProvider);
+    final items = ref.watch(sortTrashGameNotifierProvider).items;
 
     return GameScaffold(
       gameTitle: StringConstants.sortTrashTitle,
@@ -84,9 +84,7 @@ class _SortTrashScreenState extends ConsumerState<SortTrashGameScreen> {
 
 
   void onErrorOccurred() async {
-    isButtonEnabled = false;
-    await Future.delayed(const Duration(seconds: 2));
-    isButtonEnabled = true;
+    ref.read(sortTrashGameNotifierProvider.notifier).disableTrashButtons();
     ref.read(sortTrashGameNotifierProvider.notifier).removeLastItem();
   }
 }
