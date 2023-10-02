@@ -87,7 +87,7 @@ class TrashIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       AssetConstants.trashIcon,
-      color: trashColor,
+      colorFilter: ColorFilter.mode(trashColor, BlendMode.srcIn),
       width: 100,
       height: 100,
     );
