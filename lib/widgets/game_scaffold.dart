@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_game/core/constants.dart';
-import 'package:flutter_game/core/styles.dart';
 import 'package:flutter_game/widgets/game_header.dart';
+
+import 'background_widget.dart';
 
 class GameScaffold extends StatelessWidget {
   const GameScaffold({super.key, required this.gameTitle, required this.children});
@@ -12,23 +13,20 @@ class GameScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          StringConstants.sortTrashTitle,
-          style: TextStyles.gameTitle,
+      body: SafeArea(
+        child: BackgroundWidget(
+          backgroundPath: AssetConstants.backgroundGame_1,
+          opacity: 0.8,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const GameHeader(),
+              ...children,
+            ],
+          ),
+          //bottomNavigationBar:
         ),
-        backgroundColor: CustomColors.orange,
-        centerTitle: true,
-        elevation: 0.0,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const GameHeader(),
-          ...children,
-        ],
-      ),
-      //bottomNavigationBar:
     );
   }
 }

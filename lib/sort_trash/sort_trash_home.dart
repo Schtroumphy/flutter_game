@@ -3,8 +3,9 @@ import 'package:flutter_game/core/constants.dart';
 import 'package:flutter_game/core/styles.dart';
 import 'package:flutter_game/sort_trash/providers/sort_trash_provider.dart';
 import 'package:flutter_game/sort_trash/sort_trash_game_screen.dart';
+import 'package:flutter_game/widgets/background_widget.dart';
 import 'package:flutter_game/widgets/game_title.dart';
-import 'package:flutter_game/widgets/play_button.dart';
+import 'package:flutter_game/widgets/rounded_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,17 +16,10 @@ class SortTrashHome extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return SafeArea(
       child: Scaffold(
-        body: Container(
-            constraints: const BoxConstraints.expand(),
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(AssetConstants.background_1),
-                fit: BoxFit.cover,
-              ),
-            ),
+        body: BackgroundWidget(
+            backgroundPath: AssetConstants.background_1,
             child: Column(
               children: [
                 const Expanded(
@@ -35,7 +29,7 @@ class SortTrashHome extends ConsumerWidget {
                   ),
                 ),
                 Flexible(
-                  child: PlayButton(
+                  child: RoundedButton(
                     onTap: () => _onPlayPressed(context, ref),
                   ),
                 ),

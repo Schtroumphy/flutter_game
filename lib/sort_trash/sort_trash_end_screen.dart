@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_game/core/constants.dart';
 import 'package:flutter_game/core/game_provider.dart';
+import 'package:flutter_game/core/styles.dart';
+import 'package:flutter_game/core/theme.dart';
+import 'package:flutter_game/widgets/background_widget.dart';
+import 'package:flutter_game/widgets/game_title.dart';
+import 'package:flutter_game/widgets/rounded_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,37 +17,39 @@ class SortTrashEndScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
+    final appTheme = AppTheme.of(context);
     final game = ref.read(gameNotifierProvider);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Sort Trash Game !"),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text(
-            "You have finished the game",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
-          Text("Score : ${game?.score}"),
-          Text("Errors : ${game?.errors}"),
-          ElevatedButton(
-            onPressed: () => _onGoBackButtonPressed(context, ref),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.blue),
-            ),
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Icon(Icons.arrow_back, color: Colors.white),
-            ),
-          ),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: BackgroundWidget(
+            backgroundPath: AssetConstants.background_1,
+            child: Column(
+              children: [
+                const Flexible(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: Insets.titleTopMargin),
+                    child: GameTitle(StringConstants.gameFinished),
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  "Score : ${game?.score ?? 0}",
+                  style: appTheme.mediumTitle,
+                ),
+                Text(
+                  "Erreur(s) : ${game?.errors ?? 0}",
+                  style: appTheme.mediumTitle,
+                ),
+                const Spacer(),
+                Flexible(
+                  child: RoundedButton(
+                    iconData: Icons.arrow_back,
+                    onTap: () => _onGoBackButtonPressed(context, ref),
+                  ),
+                ),
+              ],
+            )),
       ),
     );
   }

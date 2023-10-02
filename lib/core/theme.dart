@@ -5,6 +5,7 @@ import 'package:flutter_game/core/styles.dart';
 @immutable
 class AppThemeData with Diagnosticable {
   AppThemeData({
+    required this.mediumTitle,
     required this.title,
     required this.subtitle,
     required this.text,
@@ -16,6 +17,11 @@ class AppThemeData with Diagnosticable {
     final theme = Theme.of(context);
 
     return AppThemeData(
+      mediumTitle: const TextStyle(
+        color: CustomColors.darkerBlue,
+        fontWeight: FontWeight.bold,
+        fontSize: 24,
+      ),
       title: const TextStyle(
         color: CustomColors.darkerBlue,
         fontWeight: FontWeight.bold,
@@ -40,6 +46,7 @@ class AppThemeData with Diagnosticable {
     );
   }
 
+  final TextStyle mediumTitle;
   final TextStyle title;
   final TextStyle subtitle;
   final TextStyle text;
