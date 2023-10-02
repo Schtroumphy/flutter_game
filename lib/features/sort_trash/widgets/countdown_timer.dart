@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_game/sort_trash/widgets/timer_provider.dart';
+import 'package:flutter_game/features/sort_trash/widgets/timer_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';

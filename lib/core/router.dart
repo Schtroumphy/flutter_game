@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_game/feature_home/home_screen.dart';
-import 'package:flutter_game/sort_trash/sort_trash_end_screen.dart';
-import 'package:flutter_game/sort_trash/sort_trash_game_screen.dart';
-import 'package:flutter_game/sort_trash/sort_trash_home.dart';
+import 'package:flutter_game/features/home/home_screen.dart';
+import 'package:flutter_game/features/sort_trash/sort_trash_end_screen.dart';
+import 'package:flutter_game/features/sort_trash/sort_trash_game_screen.dart';
+import 'package:flutter_game/features/sort_trash/sort_trash_home.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 

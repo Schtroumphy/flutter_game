@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter_game/core/app_game.dart';
 import 'package:flutter_game/core/game_provider.dart';
-import 'package:flutter_game/sort_trash/models/trash_item.dart';
-import 'package:flutter_game/sort_trash/models/trash_item_type.dart';
+import 'package:flutter_game/features/sort_trash/models/trash_item.dart';
+import 'package:flutter_game/features/sort_trash/models/waste_type.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final sortTrashGameNotifierProvider = NotifierProvider<TrashItemNotifier, SortTrashGame>(() => TrashItemNotifier());
@@ -43,7 +43,7 @@ class TrashItemNotifier extends Notifier<SortTrashGame> {
     state = state.copyWith(isEnabled: true);
   }
 
-  bool throwItem(List<TrashType> buttonTypes) {
+  bool throwItem(List<WasteType> buttonTypes) {
     if (buttonTypes.contains(state.items.last.type)) {
       removeLastItem();
       ref.read(gameNotifierProvider.notifier).addScore();
@@ -61,11 +61,11 @@ class TrashItemNotifier extends Notifier<SortTrashGame> {
   }
 
   TrashItem _createRandomTrashItem(int typeNumber) {
-    if (typeNumber > TrashType.values.length) {
+    if (typeNumber > WasteType.values.length) {
       throw Exception("Bad trash type number for creating random trash items.");
     }
 
-    final types = TrashType.values //
+    final types = WasteType.values //
         .take(typeNumber) //
         .toList();
     final randomType = types[random.nextInt(types.length)];

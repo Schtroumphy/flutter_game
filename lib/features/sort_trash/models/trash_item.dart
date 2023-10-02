@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_game/sort_trash/models/trash_item_type.dart';
+import 'package:flutter_game/features/sort_trash/models/waste_type.dart';
 
 class TrashItem {
-  final TrashType type;
+  final WasteType type;
   late final Color color;
   final bool isError;
 
@@ -12,7 +12,7 @@ class TrashItem {
     color = Colors.primaries[Random().nextInt(Colors.primaries.length)];
   }
 
-  TrashItem copyWith({String? name, TrashType? type, bool? isError}) {
+  TrashItem copyWith({String? name, WasteType? type, bool? isError}) {
     return TrashItem(
       type ?? this.type,
       isError: isError ?? this.isError,

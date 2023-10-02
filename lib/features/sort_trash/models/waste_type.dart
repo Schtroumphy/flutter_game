@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
 
-enum TrashType {
+enum WasteType {
   plastic(Colors.green),
   glass(Colors.blue),
   metal(Colors.red);
 
-  const TrashType(this.color);
+  const WasteType(this.color);
 
   final MaterialColor color;
 }

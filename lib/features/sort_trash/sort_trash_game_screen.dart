@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_game/core/constants.dart';
-import 'package:flutter_game/sort_trash/models/trash_item.dart';
-import 'package:flutter_game/sort_trash/providers/sort_trash_provider.dart';
-import 'package:flutter_game/sort_trash/widgets/trash_button.dart';
-import 'package:flutter_game/sort_trash/widgets/waste_item.dart';
+import 'package:flutter_game/features/sort_trash/models/trash_item.dart';
+import 'package:flutter_game/features/sort_trash/models/waste_type.dart';
+import 'package:flutter_game/features/sort_trash/providers/sort_trash_provider.dart';
+import 'package:flutter_game/features/sort_trash/widgets/trash_button.dart';
+import 'package:flutter_game/features/sort_trash/widgets/waste_item.dart';
 import 'package:flutter_game/widgets/game_scaffold.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_game/sort_trash/models/trash_item_type.dart';
 
 class SortTrashGameScreen extends ConsumerStatefulWidget {
   const SortTrashGameScreen({Key? key}) : super(key: key);
@@ -51,9 +51,9 @@ class _SortTrashScreenState extends ConsumerState<SortTrashGameScreen> {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            trashButton([TrashType.glass, TrashType.plastic], "glassTrash", false),
+            trashButton([WasteType.glass, WasteType.plastic], "glassTrash", false),
             const Spacer(),
-            trashButton([TrashType.metal, TrashType.metal], "plasticTrash", true),
+            trashButton([WasteType.metal, WasteType.metal], "plasticTrash", true),
           ],
         ),
       ],
@@ -69,7 +69,7 @@ class _SortTrashScreenState extends ConsumerState<SortTrashGameScreen> {
         isOnError: isLastOne);
   }
 
-  TrashButton trashButton(List<TrashType> types, String heroTag, bool isInversed) {
+  TrashButton trashButton(List<WasteType> types, String heroTag, bool isInversed) {
     return TrashButton(
       heroTag: heroTag,
       buttonTypes: types,

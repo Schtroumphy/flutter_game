@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_game/core/constants.dart';
 import 'package:flutter_game/core/styles.dart';
-import 'package:flutter_game/sort_trash/models/trash_item_type.dart';
-import 'package:flutter_game/sort_trash/providers/sort_trash_provider.dart';
+import 'package:flutter_game/features/sort_trash/models/waste_type.dart';
+import 'package:flutter_game/features/sort_trash/providers/sort_trash_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -17,7 +17,7 @@ class TrashButton extends ConsumerWidget {
   }) : super(key: key);
 
   final String heroTag;
-  final List<TrashType> buttonTypes;
+  final List<WasteType> buttonTypes;
   final bool isInversed;
   final Function? onErrorOccurred;
   final Function? onSuccess;
@@ -58,7 +58,7 @@ class TrashButton extends ConsumerWidget {
     );
   }
 
-  _onTrashTapped(WidgetRef ref, List<TrashType> buttonTypes) {
+  _onTrashTapped(WidgetRef ref, List<WasteType> buttonTypes) {
     if (ref.read(sortTrashGameNotifierProvider).isButtonsEnabled) {
       bool result = ref.read(sortTrashGameNotifierProvider.notifier).throwItem(buttonTypes);
       if (!result) {

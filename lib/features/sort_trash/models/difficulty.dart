@@ -1,5 +1,3 @@
-
-
 class Difficulty {
   final int number;
   final int typeNumber;
