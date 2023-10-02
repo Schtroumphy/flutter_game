@@ -31,8 +31,8 @@ class WasteItem extends StatelessWidget {
               color: isOnError ? Colors.red : item.type.color,
             ),
             child: SvgPicture.asset(
-              AssetWasteItem.randomItemByType(item.type).path,
-              color: Colors.white,
+              WasteItemAsset.randomItemByType(item.type).path,
+              colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
             ),
           ),
         ),

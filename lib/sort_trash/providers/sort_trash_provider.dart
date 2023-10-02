@@ -37,8 +37,6 @@ class TrashItemNotifier extends Notifier<SortTrashGame> {
 
   start() => ref.read(gameNotifierProvider.notifier).start(GameType.sortTheTrash);
 
-  end() => ref.read(gameNotifierProvider.notifier).end();
-
   disableTrashButtons() async {
     state = state.copyWith(isEnabled: false);
     await Future.delayed(const Duration(seconds: 2));

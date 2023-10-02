@@ -21,12 +21,10 @@ class SortTrashGameScreen extends ConsumerStatefulWidget {
 class _SortTrashScreenState extends ConsumerState<SortTrashGameScreen> {
   final ScrollController _controller = ScrollController();
 
-  bool _isButtonEnabled = true;
-
-  set isButtonEnabled(bool value) {
-    setState(() {
-      _isButtonEnabled = value;
-    });
+  @override
+  void dispose() {
+    print("SORT TRASH GAME DISPOSED");
+    super.dispose();
   }
 
   @override
@@ -68,14 +66,13 @@ class _SortTrashScreenState extends ConsumerState<SortTrashGameScreen> {
         key: UniqueKey(),
         item: item,
         isLastOne: isLastOne,
-        isOnError: isLastOne && !_isButtonEnabled);
+        isOnError: isLastOne);
   }
 
   TrashButton trashButton(List<TrashType> types, String heroTag, bool isInversed) {
     return TrashButton(
       heroTag: heroTag,
       buttonTypes: types,
-      enabled: _isButtonEnabled,
       onErrorOccurred: onErrorOccurred,
       onSuccess: null,
       isInversed: isInversed,

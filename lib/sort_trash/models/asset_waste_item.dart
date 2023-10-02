@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:flutter_game/sort_trash/models/trash_item_type.dart';
 
-enum AssetWasteItem {
+enum WasteItemAsset {
   glassOfWine(TrashType.glass, "assets/items/glass_of_wine.svg"),
   glasses(TrashType.glass, "assets/items/glasses.svg"),
   cocktail(TrashType.glass, "assets/items/cocktail.svg"),
@@ -15,14 +15,14 @@ enum AssetWasteItem {
   metal1(TrashType.metal, "assets/items/bottle.svg"),
   metal2(TrashType.metal, "assets/items/bottle.svg");
 
-  const AssetWasteItem(this.type, this.path);
+  const WasteItemAsset(this.type, this.path);
 
   final TrashType type;
   final String path;
 
-  static AssetWasteItem randomItemByType(TrashType type) {
+  static WasteItemAsset randomItemByType(TrashType type) {
     Random random = Random();
-    final items = AssetWasteItem.values.where((element) => element.type == type).toList();
+    final items = WasteItemAsset.values.where((element) => element.type == type).toList();
     return items[random.nextInt(items.length)];
   }
 

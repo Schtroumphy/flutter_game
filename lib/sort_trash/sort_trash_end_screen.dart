@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_game/feature_home/home_screen.dart';
-import 'package:flutter_game/sort_trash/providers/final_game_provider.dart';
+import 'package:flutter_game/core/game_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,6 +11,9 @@ class SortTrashEndScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    final game = ref.read(gameNotifierProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Sort Trash Game !"),
@@ -27,10 +29,10 @@ class SortTrashEndScreen extends ConsumerWidget {
               fontSize: 20,
             ),
           ),
-          const Text("Score : "),
-          const Text("Errors : "),
+          Text("Score : ${game?.score}"),
+          Text("Errors : ${game?.errors}"),
           ElevatedButton(
-            onPressed: () => _onGoBackButtonPressed(context, ref), // GO to sort trash game page
+            onPressed: () => _onGoBackButtonPressed(context, ref),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.blue),
             ),
@@ -45,6 +47,7 @@ class SortTrashEndScreen extends ConsumerWidget {
   }
 
   void _onGoBackButtonPressed(BuildContext context, WidgetRef ref) {
+    ref.read(gameNotifierProvider.notifier).end();
     context.pop();
   }
 }

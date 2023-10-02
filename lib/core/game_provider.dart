@@ -12,7 +12,11 @@ class GameNotifier extends Notifier<AppGame?> {
   }
 
   AppGame start(GameType type) {
-    final game = AppGame(type: type, score: 0, errors: 0);
+    final game = AppGame(
+      type: type,
+      score: 0,
+      errors: 0,
+    );
     state = game;
     return game;
   }
@@ -20,18 +24,16 @@ class GameNotifier extends Notifier<AppGame?> {
   addScore() {
     if (state == null) return;
 
-    final current = (state?.score ?? 0) + 1;
     state = state!.copyWith(
-      score: current,
+      score: (state?.score ?? 0) + 1,
     );
   }
 
   addError() {
     if (state == null) return;
 
-    final current = (state?.errors ?? 0) + 1;
     state = state!.copyWith(
-      errors: current,
+      errors: (state?.errors ?? 0) + 1,
     );
   }
 

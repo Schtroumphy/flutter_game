@@ -11,7 +11,6 @@ class TrashButton extends ConsumerWidget {
     Key? key,
     required this.heroTag,
     required this.buttonTypes,
-    required this.enabled,
     this.isInversed = false,
     this.onErrorOccurred,
     this.onSuccess,
@@ -19,7 +18,6 @@ class TrashButton extends ConsumerWidget {
 
   final String heroTag;
   final List<TrashType> buttonTypes;
-  final bool enabled;
   final bool isInversed;
   final Function? onErrorOccurred;
   final Function? onSuccess;
@@ -61,7 +59,7 @@ class TrashButton extends ConsumerWidget {
   }
 
   _onTrashTapped(WidgetRef ref, List<TrashType> buttonTypes) {
-    if (enabled) {
+    if (ref.read(sortTrashGameNotifierProvider).isButtonsEnabled) {
       bool result = ref.read(sortTrashGameNotifierProvider.notifier).throwItem(buttonTypes);
       if (!result) {
         // Disable trash buttons

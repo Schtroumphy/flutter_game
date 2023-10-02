@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_game/feature_home/home_screen.dart';
-import 'package:flutter_game/sort_trash/providers/final_game_provider.dart';
 import 'package:flutter_game/sort_trash/sort_trash_end_screen.dart';
 import 'package:flutter_game/sort_trash/sort_trash_game_screen.dart';
 import 'package:flutter_game/sort_trash/sort_trash_home.dart';
@@ -76,6 +75,6 @@ class RouterNotifier extends Notifier<GoRouter> {
 
 class _RouterChangeNotifier extends ChangeNotifier {
   _RouterChangeNotifier(Ref ref) {
-    ref.listen(endedGameProvider, (_, __) => notifyListeners());
+    //ref.listen(providerToListen, (_, __) => notifyListeners());
   }
 }

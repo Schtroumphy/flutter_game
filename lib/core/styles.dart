@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 class CustomColors {
   CustomColors._();
 
-
   static const orange = Color(0xFFC47115);
   static const white = Color(0xfff5f5f5);
-
-
 
   static const darkerBlue = Color(0xff00335B); // text style
   static const primary = Color(0xff819ef0);
