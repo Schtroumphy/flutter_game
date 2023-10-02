@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_game/core/game_provider.dart';
-import 'package:flutter_game/features/sort_trash/sort_trash_end_screen.dart';
+import 'package:flutter_game/features/sort_trash/presentation/sort_trash_end_screen.dart';
 import 'package:flutter_game/features/sort_trash/widgets/countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
