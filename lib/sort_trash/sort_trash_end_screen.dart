@@ -7,7 +7,8 @@ import 'package:go_router/go_router.dart';
 class SortTrashEndScreen extends ConsumerWidget {
   const SortTrashEndScreen({Key? key}) : super(key: key);
 
-  static const String location = "/sort_trash_end_screen";
+  static String location = '/sort_trash_home/sort_trash_end_screen';
+  static const String path = "sort_trash_end_screen";
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,7 +45,6 @@ class SortTrashEndScreen extends ConsumerWidget {
   }
 
   void _onGoBackButtonPressed(BuildContext context, WidgetRef ref) {
-    //ref.read(endedGameProvider.notifier). = null;
-    context.push(HomeScreen.location);
+    context.pop();
   }
 }

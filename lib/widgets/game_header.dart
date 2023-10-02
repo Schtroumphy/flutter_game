@@ -33,6 +33,6 @@ class GameHeader extends ConsumerWidget {
 
   _onTimerFinished(BuildContext context, WidgetRef ref) {
     ref.read(sortTrashGameNotifierProvider.notifier).end();
-    context.push(SortTrashEndScreen.location);
+    context.go(SortTrashEndScreen.location);
   }
 }

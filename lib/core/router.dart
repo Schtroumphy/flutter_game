@@ -8,6 +8,7 @@ import 'package:flutter_game/sort_trash/sort_trash_home.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+
 final routerProvider =
     NotifierProvider<RouterNotifier, GoRouter>(() => RouterNotifier());
 
@@ -21,15 +22,18 @@ final _routes = [
   GoRoute(
     path: SortTrashHome.location,
     builder: (context, state) => const SortTrashHome(),
+    routes: [
+      GoRoute(
+        path: SortTrashGameScreen.path,
+        builder: (context, state) => const SortTrashGameScreen(),
+      ),
+      GoRoute(
+        path: SortTrashEndScreen.path,
+        builder: (context, state) => const SortTrashEndScreen(),
+      ),
+    ]
   ),
-  GoRoute(
-    path: SortTrashGameScreen.location,
-    builder: (context, state) => const SortTrashGameScreen(),
-  ),
-  GoRoute(
-    path: SortTrashEndScreen.location,
-    builder: (context, state) => const SortTrashEndScreen(),
-  ),
+
 ];
 
 class RouterNotifier extends Notifier<GoRouter> {

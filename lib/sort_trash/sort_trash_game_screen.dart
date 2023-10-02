@@ -11,7 +11,8 @@ import 'package:flutter_game/sort_trash/models/trash_item_type.dart';
 class SortTrashGameScreen extends ConsumerStatefulWidget {
   const SortTrashGameScreen({Key? key}) : super(key: key);
 
-  static const String location = "/sort_trash_game";
+  static const String location = "/sort_trash_home/sort_trash_game";
+  static const String path = "sort_trash_game";
 
   @override
   ConsumerState<SortTrashGameScreen> createState() => _SortTrashScreenState();
