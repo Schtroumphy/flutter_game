@@ -10,25 +10,21 @@ class RoundedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const borderRadius = BorderRadius.all(Radius.circular(50));
 
-    return GestureDetector(
-      onTap: onTap,
-      child: Material(
-        elevation: 10,
-        borderRadius: borderRadius,
-        child: Container(
-          padding: const EdgeInsets.all(Insets.l),
-          decoration: BoxDecoration(
-            color: backgroundButtonColor ?? CustomColors.orange.withOpacity(0.7),
-            borderRadius: borderRadius,
+    return ElevatedButton(
+      onPressed: onTap,
+      style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.all(10.0),
+          backgroundColor: backgroundButtonColor ?? CustomColors.orange,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0)
           ),
-          child: Icon(
-            iconData ?? Icons.play_arrow,
-            color: CustomColors.white,
-            size: IconSize.xxlarge,
-          ),
-        ),
+          elevation: 10
+      ),
+      child: Icon(
+        iconData ?? Icons.play_arrow,
+        color: CustomColors.white,
+        size: IconSize.xxlarge,
       ),
     );
   }
