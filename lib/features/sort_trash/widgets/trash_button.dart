@@ -25,26 +25,20 @@ class TrashButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final buttonsEnabled = ref.watch(sortTrashGameNotifierProvider).isButtonsEnabled;
-    return SizedBox(
-      width: 200,
-      height: 150,
-      child: Container(
-        padding: const EdgeInsets.only(top: Insets.m),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20))
-        ),
+    return InkWell(
+      onTap: () {
+        buttonsEnabled ? _onTrashTapped(ref, buttonTypes) : null;
+      },
+      child: SizedBox(
+        width: 150,
+        height: 150,
         child: Stack(
           alignment: isInversed ? Alignment.topRight : Alignment.topLeft,
           children: [
             Positioned(
               right: null,
-              child: InkWell(
-                onTap: () {
-                  buttonsEnabled ? _onTrashTapped(ref, buttonTypes) : null;
-                },
-                child: TrashIcon(
-                  trashColor: buttonsEnabled ? buttonTypes[0].color : CustomColors.redError,
-                ),
+              child: TrashIcon(
+                trashColor: buttonsEnabled ? buttonTypes[0].color : CustomColors.redError,
               ),
             ),
             const Spacer(),
@@ -52,13 +46,8 @@ class TrashButton extends ConsumerWidget {
               top: 25,
               left: isInversed ? null : 25,
               right: isInversed ? 25 : null,
-              child: InkWell(
-                onTap: () {
-                  buttonsEnabled ? _onTrashTapped(ref, buttonTypes) : null;
-                },
-                child: TrashIcon(
-                  trashColor: buttonsEnabled ? buttonTypes[1].color : CustomColors.redError,
-                ),
+              child: TrashIcon(
+                trashColor: buttonsEnabled ? buttonTypes[1].color : CustomColors.redError,
               ),
             ),
           ],
