@@ -60,12 +60,12 @@ class _SortTrashScreenState extends ConsumerState<SortTrashGameScreen> {
   }
 
   WasteItem _buildItem(TrashItem item, int index) {
-    final isLastOne = index == 3;
+    final isLastOne = index == 2;
     return WasteItem(
-        key: UniqueKey(),
-        item: item,
-        isLastOne: isLastOne,
-        isOnError: isLastOne);
+      key: UniqueKey(),
+      item: item,
+      isLastOne: isLastOne,
+    );
   }
 
   TrashButton trashButton(List<WasteType> types, String heroTag, bool isInversed) {
@@ -78,9 +78,7 @@ class _SortTrashScreenState extends ConsumerState<SortTrashGameScreen> {
     );
   }
 
-
   void onErrorOccurred() async {
-    ref.read(sortTrashGameNotifierProvider.notifier).disableTrashButtons();
-    ref.read(sortTrashGameNotifierProvider.notifier).removeLastItem();
+    await ref.read(sortTrashGameNotifierProvider.notifier).handleError();
   }
 }

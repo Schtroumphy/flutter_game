@@ -22,4 +22,11 @@ class AssetConstants {
   static const background_1 = "assets/background/home_1.jpg";
   static const backgroundGame_1 = "assets/background/game_1.png";
   static const trashIcon = "assets/icons/trash.svg";
+  static const trash2Icon = "assets/icons/trash2.svg";
+}
+
+class GameConstants {
+  GameConstants._();
+
+  static const typeNumbers = 4;
 }

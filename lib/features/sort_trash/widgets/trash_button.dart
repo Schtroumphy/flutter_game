@@ -28,31 +28,40 @@ class TrashButton extends ConsumerWidget {
     return SizedBox(
       width: 200,
       height: 150,
-      child: GestureDetector(
-        onTap: () {
-          buttonsEnabled ? _onTrashTapped(ref, buttonTypes) : null;
-        },
-        child: Container(
-          padding: const EdgeInsets.only(top: Insets.m),
-          child: Stack(
-            alignment: isInversed ? Alignment.topRight : Alignment.topLeft,
-            children: [
-              Positioned(
-                right: null,
+      child: Container(
+        padding: const EdgeInsets.only(top: Insets.m),
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20))
+        ),
+        child: Stack(
+          alignment: isInversed ? Alignment.topRight : Alignment.topLeft,
+          children: [
+            Positioned(
+              right: null,
+              child: InkWell(
+                onTap: () {
+                  buttonsEnabled ? _onTrashTapped(ref, buttonTypes) : null;
+                },
                 child: TrashIcon(
-                  trashColor: buttonsEnabled ? buttonTypes[0].color : Colors.grey,
+                  trashColor: buttonsEnabled ? buttonTypes[0].color : CustomColors.redError,
                 ),
               ),
-              Positioned(
-                top: 25,
-                left: isInversed ? null : 25,
-                right: isInversed ? 25 : null,
+            ),
+            const Spacer(),
+            Positioned(
+              top: 25,
+              left: isInversed ? null : 25,
+              right: isInversed ? 25 : null,
+              child: InkWell(
+                onTap: () {
+                  buttonsEnabled ? _onTrashTapped(ref, buttonTypes) : null;
+                },
                 child: TrashIcon(
-                  trashColor: buttonsEnabled ? buttonTypes[1].color : Colors.grey,
+                  trashColor: buttonsEnabled ? buttonTypes[1].color : CustomColors.redError,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -62,16 +71,10 @@ class TrashButton extends ConsumerWidget {
     if (ref.read(sortTrashGameNotifierProvider).isButtonsEnabled) {
       bool result = ref.read(sortTrashGameNotifierProvider.notifier).throwItem(buttonTypes);
       if (!result) {
-        // Disable trash buttons
         onErrorOccurred?.call();
-
-        // Display a red cross on item
-
-        // Remove from list without count the score
         return;
-      } else {
-        onSuccess?.call();
       }
+      onSuccess?.call();
     }
   }
 }
@@ -83,11 +86,18 @@ class TrashIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      AssetConstants.trashIcon,
-      colorFilter: ColorFilter.mode(trashColor, BlendMode.srcIn),
-      width: 100,
-      height: 100,
+    return Card(
+      elevation: 10,
+      shape: const CircleBorder(),
+      clipBehavior: Clip.antiAlias,
+      color: Colors.transparent,
+      shadowColor: Colors.transparent,
+      child: SvgPicture.asset(
+        AssetConstants.trash2Icon,
+        colorFilter: ColorFilter.mode(trashColor, BlendMode.srcIn),
+        width: 100,
+        height: 100,
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_game/core/app_game.dart';
+import 'package:flutter_game/core/constants.dart';
 import 'package:flutter_game/core/game_provider.dart';
 import 'package:flutter_game/features/sort_trash/models/trash_item.dart';
 import 'package:flutter_game/features/sort_trash/models/waste_type.dart';
@@ -25,7 +26,7 @@ class SortTrashGame {
 class TrashItemNotifier extends Notifier<SortTrashGame> {
   Random random = Random();
 
-  final typeTrashInGame = 3;
+  final typeTrashInGame = GameConstants.typeNumbers;
 
   @override
   SortTrashGame build() {
@@ -37,15 +38,16 @@ class TrashItemNotifier extends Notifier<SortTrashGame> {
 
   start() => ref.read(gameNotifierProvider.notifier).start(GameType.sortTheTrash);
 
-  disableTrashButtons() async {
+  handleError() async {
     state = state.copyWith(isEnabled: false);
     await Future.delayed(const Duration(seconds: 2));
     state = state.copyWith(isEnabled: true);
+    _removeLastItem();
   }
 
   bool throwItem(List<WasteType> buttonTypes) {
     if (buttonTypes.contains(state.items.last.type)) {
-      removeLastItem();
+      _removeLastItem();
       ref.read(gameNotifierProvider.notifier).addScore();
       return true;
     }
@@ -53,7 +55,7 @@ class TrashItemNotifier extends Notifier<SortTrashGame> {
     return false;
   }
 
-  void removeLastItem() {
+  void _removeLastItem() {
     final items = [...state.items];
     items.removeLast();
     items.insert(0, _createRandomTrashItem(typeTrashInGame));
