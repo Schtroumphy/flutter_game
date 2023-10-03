@@ -1,12 +1,14 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_game/core/styles.dart';
 
 enum WasteType {
-  plastic(Colors.green),
-  glass(Colors.blue),
-  metal(Colors.red);
+  plastic(Colors.yellow),
+  glass(Colors.green),
+  metal(CustomColors.gray),
+  paper(Colors.blue);
 
   const WasteType(this.color);
 
-  final MaterialColor color;
+  final Color color;
 }

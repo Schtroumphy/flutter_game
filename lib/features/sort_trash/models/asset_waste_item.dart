@@ -12,6 +12,9 @@ enum WasteItemAsset {
   plasticCoffee(WasteType.plastic, "assets/items/plastic_coffee.svg"),
   bottle(WasteType.plastic, "assets/items/bottle.svg"),
 
+  contract(WasteType.paper, "assets/items/contract.svg"),
+  printer(WasteType.paper, "assets/items/printer.svg"),
+
   metal1(WasteType.metal, "assets/items/bottle.svg"),
   metal2(WasteType.metal, "assets/items/bottle.svg");
 

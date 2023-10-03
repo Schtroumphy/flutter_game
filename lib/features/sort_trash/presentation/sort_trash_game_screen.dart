@@ -47,13 +47,12 @@ class _SortTrashScreenState extends ConsumerState<SortTrashGameScreen> {
             ),
           ),
         ),
-
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             trashButton([WasteType.glass, WasteType.plastic], "glassTrash", false),
             const Spacer(),
-            trashButton([WasteType.metal, WasteType.metal], "plasticTrash", true),
+            trashButton([WasteType.metal, WasteType.paper], "plasticTrash", true),
           ],
         ),
       ],
