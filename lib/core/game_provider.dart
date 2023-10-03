@@ -1,4 +1,5 @@
 import 'package:flutter_game/core/app_game.dart';
+import 'package:flutter_game/core/router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final gameNotifierProvider = NotifierProvider<GameNotifier, AppGame?>(() {
@@ -39,5 +40,6 @@ class GameNotifier extends Notifier<AppGame?> {
 
   end() {
     state = null;
+    ref.read(routerProvider).pop();
   }
 }

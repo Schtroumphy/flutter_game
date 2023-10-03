@@ -7,7 +7,6 @@ import 'package:flutter_game/widgets/background_widget.dart';
 import 'package:flutter_game/widgets/game_title.dart';
 import 'package:flutter_game/widgets/rounded_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class SortTrashEndScreen extends ConsumerWidget {
   const SortTrashEndScreen({Key? key}) : super(key: key);
@@ -56,6 +55,5 @@ class SortTrashEndScreen extends ConsumerWidget {
 
   void _onGoBackButtonPressed(BuildContext context, WidgetRef ref) {
     ref.read(gameNotifierProvider.notifier).end();
-    context.pop();
   }
 }

@@ -8,8 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 
-final routerProvider =
-    NotifierProvider<RouterNotifier, GoRouter>(() => RouterNotifier());
+final routerProvider = NotifierProvider<RouterNotifier, GoRouter>(() => RouterNotifier());
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
