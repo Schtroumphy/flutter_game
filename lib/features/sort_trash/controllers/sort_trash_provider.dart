@@ -26,12 +26,13 @@ class SortTrashGame {
 class TrashItemNotifier extends Notifier<SortTrashGame> {
   Random random = Random();
 
-  final typeTrashInGame = GameConstants.typeNumbers;
+  final itemsToDisplay = 3;
 
   @override
   SortTrashGame build() {
+    final level = ref.read(currentLevelProvider);
     return SortTrashGame(
-      items: List.generate(3, (index) => _createRandomTrashItem(typeTrashInGame)),
+      items: List.generate(itemsToDisplay, (index) => _createRandomTrashItem(level.wasteTypes)),
       isButtonsEnabled: true,
     );
   }
@@ -58,18 +59,14 @@ class TrashItemNotifier extends Notifier<SortTrashGame> {
   void _removeLastItem() {
     final items = [...state.items];
     items.removeLast();
-    items.insert(0, _createRandomTrashItem(typeTrashInGame));
+    items.insert(0, _createRandomTrashItem(ref.read(currentLevelProvider).wasteTypes));
     state = state.copyWith(items: items);
   }
 
-  TrashItem _createRandomTrashItem(int typeNumber) {
-    if (typeNumber > WasteType.values.length) {
+  TrashItem _createRandomTrashItem(List<WasteType> types) {
+    if (types.length > WasteType.values.length) {
       throw Exception("Bad trash type number for creating random trash items.");
     }
-
-    final types = WasteType.values //
-        .take(typeNumber) //
-        .toList();
     final randomType = types[random.nextInt(types.length)];
 
     return TrashItem(randomType);

@@ -3,6 +3,7 @@ import 'package:flutter_game/core/constants.dart';
 import 'package:flutter_game/core/styles.dart';
 import 'package:flutter_game/features/sort_trash/controllers/sort_trash_provider.dart';
 import 'package:flutter_game/features/sort_trash/presentation/sort_trash_game_screen.dart';
+import 'package:flutter_game/features/sort_trash/widgets/choose_level_row.dart';
 import 'package:flutter_game/widgets/background_widget.dart';
 import 'package:flutter_game/widgets/game_title.dart';
 import 'package:flutter_game/widgets/rounded_button.dart';
@@ -28,6 +29,8 @@ class SortTrashHome extends ConsumerWidget {
                     child: GameTitle(StringConstants.sortTrashTitleWithSpace),
                   ),
                 ),
+                const Flexible(child: ChooseLevelRow()),
+                const SizedBox(height: 24),
                 Flexible(
                   child: RoundedButton(
                     onTap: () => _onPlayPressed(context, ref),

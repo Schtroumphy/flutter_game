@@ -11,7 +11,7 @@ class TrashButtonRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final wasteType = ref.read(levelProvider.notifier).getWasteTypeSliced();
+    final wasteType = ref.read(currentLevelProvider.notifier).getWasteTypeSliced();
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,

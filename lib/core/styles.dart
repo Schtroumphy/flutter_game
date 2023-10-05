@@ -9,6 +9,7 @@ class CustomColors {
   static const lightBrown = Color(0xffaf8a76); // background
   static const gray = Color(0xff999999); // background
   static const redError = Color(0xffd31b2d);
+  static const yellow = Color(0xfffed700);
 
   static const darkerBlue = Color(0xff00335B); // text style
   static const primary = Color(0xff819ef0);

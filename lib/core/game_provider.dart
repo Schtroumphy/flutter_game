@@ -18,7 +18,7 @@ class GameNotifier extends Notifier<AppGame?> {
       type: type,
       score: 0,
       errors: 0,
-      duration: ref.read(levelProvider).duration,
+      duration: ref.read(currentLevelProvider).duration,
     );
     state = game;
     return game;
