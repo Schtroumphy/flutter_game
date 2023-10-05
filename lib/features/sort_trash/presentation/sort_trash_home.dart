@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_game/core/constants.dart';
 import 'package:flutter_game/core/styles.dart';
+import 'package:flutter_game/features/sort_trash/controllers/sort_trash_provider.dart';
 import 'package:flutter_game/features/sort_trash/presentation/sort_trash_game_screen.dart';
-import 'package:flutter_game/features/sort_trash/providers/sort_trash_provider.dart';
 import 'package:flutter_game/widgets/background_widget.dart';
 import 'package:flutter_game/widgets/game_title.dart';
 import 'package:flutter_game/widgets/rounded_button.dart';

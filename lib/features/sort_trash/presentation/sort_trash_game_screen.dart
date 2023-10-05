@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_game/core/constants.dart';
+import 'package:flutter_game/features/sort_trash/controllers/sort_trash_provider.dart';
 import 'package:flutter_game/features/sort_trash/models/trash_item.dart';
-import 'package:flutter_game/features/sort_trash/models/waste_type.dart';
-import 'package:flutter_game/features/sort_trash/providers/sort_trash_provider.dart';
-import 'package:flutter_game/features/sort_trash/widgets/trash_button.dart';
+import 'package:flutter_game/features/sort_trash/widgets/trash_button_row.dart';
 import 'package:flutter_game/features/sort_trash/widgets/waste_item.dart';
 import 'package:flutter_game/widgets/game_scaffold.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,12 +19,6 @@ class SortTrashGameScreen extends ConsumerStatefulWidget {
 
 class _SortTrashScreenState extends ConsumerState<SortTrashGameScreen> {
   final ScrollController _controller = ScrollController();
-
-  @override
-  void dispose() {
-    print("SORT TRASH GAME DISPOSED");
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +40,9 @@ class _SortTrashScreenState extends ConsumerState<SortTrashGameScreen> {
             ),
           ),
         ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            trashButton([WasteType.glass, WasteType.plastic], "glassTrash", false),
-            const Spacer(),
-            trashButton([WasteType.metal, WasteType.paper], "plasticTrash", true),
-          ],
-        ),
+        TrashButtonRow(
+          onError: _onErrorOccurred
+        )
       ],
     );
   }
@@ -68,17 +56,8 @@ class _SortTrashScreenState extends ConsumerState<SortTrashGameScreen> {
     );
   }
 
-  TrashButton trashButton(List<WasteType> types, String heroTag, bool isInversed) {
-    return TrashButton(
-      heroTag: heroTag,
-      buttonTypes: types,
-      onErrorOccurred: onErrorOccurred,
-      onSuccess: null,
-      isInversed: isInversed,
-    );
-  }
 
-  void onErrorOccurred() async {
+  _onErrorOccurred() async {
     await ref.read(sortTrashGameNotifierProvider.notifier).handleError();
   }
 }

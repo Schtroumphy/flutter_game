@@ -1,8 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_game/core/styles.dart';
+import 'package:flutter_game/features/sort_trash/controllers/sort_trash_provider.dart';
 import 'package:flutter_game/features/sort_trash/models/asset_waste_item.dart';
-import 'package:flutter_game/features/sort_trash/providers/sort_trash_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 

@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_game/core/constants.dart';
 import 'package:flutter_game/core/styles.dart';
+import 'package:flutter_game/features/sort_trash/controllers/sort_trash_provider.dart';
 import 'package:flutter_game/features/sort_trash/models/waste_type.dart';
-import 'package:flutter_game/features/sort_trash/providers/sort_trash_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 class TrashButton extends ConsumerWidget {
   const TrashButton({
     Key? key,
-    required this.heroTag,
     required this.buttonTypes,
     this.isInversed = false,
     this.onErrorOccurred,
     this.onSuccess,
   }) : super(key: key);
 
-  final String heroTag;
   final List<WasteType> buttonTypes;
   final bool isInversed;
   final Function? onErrorOccurred;
@@ -25,35 +23,50 @@ class TrashButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final buttonsEnabled = ref.watch(sortTrashGameNotifierProvider).isButtonsEnabled;
-    return InkWell(
-      onTap: () {
-        buttonsEnabled ? _onTrashTapped(ref, buttonTypes) : null;
-      },
-      child: SizedBox(
-        width: 150,
-        height: 150,
-        child: Stack(
-          alignment: isInversed ? Alignment.topRight : Alignment.topLeft,
-          children: [
-            Positioned(
-              right: null,
-              child: TrashIcon(
-                trashColor: buttonsEnabled ? buttonTypes[0].color : CustomColors.redError,
+    return buttonTypes.length == 1
+        ? InkWell(
+            onTap: () {
+              buttonsEnabled ? _onTrashTapped(ref, buttonTypes) : null;
+            },
+            child: SizedBox(
+              width: 150,
+              height: 150,
+              child: Center(
+                child: TrashIcon(
+                  trashColor: buttonsEnabled ? buttonTypes[0].color : CustomColors.redError,
+                ),
               ),
             ),
-            const Spacer(),
-            Positioned(
-              top: 25,
-              left: isInversed ? null : 25,
-              right: isInversed ? 25 : null,
-              child: TrashIcon(
-                trashColor: buttonsEnabled ? buttonTypes[1].color : CustomColors.redError,
+          )
+        : InkWell(
+            onTap: () {
+              buttonsEnabled ? _onTrashTapped(ref, buttonTypes) : null;
+            },
+            child: SizedBox(
+              width: 150,
+              height: 150,
+              child: Stack(
+                alignment: isInversed ? Alignment.topRight : Alignment.topLeft,
+                children: [
+                  Positioned(
+                    right: null,
+                    child: TrashIcon(
+                      trashColor: buttonsEnabled ? buttonTypes[0].color : CustomColors.redError,
+                    ),
+                  ),
+                  const Spacer(),
+                  Positioned(
+                    top: 25,
+                    left: isInversed ? null : 25,
+                    right: isInversed ? 25 : null,
+                    child: TrashIcon(
+                      trashColor: buttonsEnabled ? buttonTypes[1].color : CustomColors.redError,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
+          );
   }
 
   _onTrashTapped(WidgetRef ref, List<WasteType> buttonTypes) {
