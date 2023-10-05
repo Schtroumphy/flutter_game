@@ -1,5 +1,6 @@
 import 'package:flutter_game/core/app_game.dart';
 import 'package:flutter_game/core/router.dart';
+import 'package:flutter_game/features/sort_trash/controllers/level_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final gameNotifierProvider = NotifierProvider<GameNotifier, AppGame?>(() {
@@ -17,6 +18,7 @@ class GameNotifier extends Notifier<AppGame?> {
       type: type,
       score: 0,
       errors: 0,
+      duration: ref.read(levelProvider).duration,
     );
     state = game;
     return game;

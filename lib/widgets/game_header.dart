@@ -12,19 +12,25 @@ class GameHeader extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final game = ref.watch(gameNotifierProvider);
 
+    if (game == null) {
+      return const Center(
+        child: Text("An error occurred"),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text("Score: ${game?.score ?? 0}"),
+          Text("Score: ${game.score}"),
           Expanded(
             child: CountdownTimer(
-              duration: const Duration(seconds: 10),
+              duration: game.duration,
               onFinished: () => _onTimerFinished(context, ref),
             ),
           ),
-          Text("Erreurs: ${game?.errors ?? 0}"),
+          Text("Erreurs: ${game.errors}"),
         ],
       ),
     );
